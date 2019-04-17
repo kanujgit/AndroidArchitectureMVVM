@@ -6,14 +6,14 @@ import android.content.Context;
 
 import com.algoworks.architectureapp.apiclient.ApiCallback;
 import com.algoworks.architectureapp.apiclient.ApiClient;
-import com.algoworks.architectureapp.apiclient.IApiRequest;
 import com.algoworks.architectureapp.requests.responses.loginresponse.LoginResponse;
+import com.algoworks.architectureapp.utils.AppConstant;
+import retrofit2.Call;
 
 public class LoginRepository {
     private static LoginRepository instance;
-    private static ApiClient apiClient;
-    private static IApiRequest iApiRequest;
-    private MutableLiveData<LoginResponse> mLoginResponseData;
+    private MutableLiveData<LoginResponse> mLoginResponseData = new MutableLiveData<>();
+    private MutableLiveData<Boolean> mLoginRequestTimeout = new MutableLiveData<>();
 
 
     public static LoginRepository getInstance() {
@@ -23,16 +23,26 @@ public class LoginRepository {
         return instance;
     }
 
-    public LiveData<LoginResponse> getLoginApi(Context context, String country,
-                                               String key) {
-        final MutableLiveData<LoginResponse> data = new MutableLiveData<>();
-        iApiRequest.getLoginApi(country, key).enqueue(new ApiCallback<LoginResponse>(context) {
+    public LiveData<LoginResponse> getLoginData() {
+        return mLoginResponseData;
+    }
+
+
+    public LiveData<Boolean> isLoginRequestTimedOut() {
+        return mLoginRequestTimeout;
+    }
+
+    public void getLoginApi(Context context, String country,
+                            String key) {
+
+        final Call<LoginResponse> request = ApiClient.getRequest().getLoginApi(country, key, "12", AppConstant.DEVICE_OS);
+        request.enqueue(new ApiCallback<LoginResponse>(context) {
             @Override
             public void onSuccess(LoginResponse loginResponse) {
 
-                if(loginResponse!=null){
+                if (loginResponse != null) {
 
-                    if(loginResponse.getSc()==1){
+                    if (loginResponse.getSc() == 1) {
                         mLoginResponseData.postValue(loginResponse);
                     }
                 }
@@ -45,6 +55,5 @@ public class LoginRepository {
             }
         });
 
-        return mLoginResponseData;
     }
 }

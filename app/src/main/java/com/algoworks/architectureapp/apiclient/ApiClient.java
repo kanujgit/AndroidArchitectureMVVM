@@ -12,10 +12,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient {
 
     private static IApiRequest apiRequest;
-//    private static String HOST = "http://dev.algoworks.com/beno/api/v0/";
+    private static String HOST = "http://dev.algoworks.com/beno/api/v0/";
 
     //private static String HOST = "http://192.168.1.75:4000/beno/api/v0/";
-      private static String HOST = "http://35.173.13.99/beno/api/v0/";
+//      private static String HOST = "http://35.173.13.99/beno/api/v0/";
 //
 
     public static void init(Class<IApiRequest> requestClass) {

@@ -32,44 +32,45 @@ import android.view.animation.LinearInterpolator;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 
-import com.beno.R;
+
+import com.algoworks.architectureapp.R;
 
 import static android.view.GestureDetector.SimpleOnGestureListener;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 public class MaterialRippleEffect extends FrameLayout {
 
-    private static final int     DEFAULT_DURATION        = 350;
-    private static final int     DEFAULT_FADE_DURATION   = 75;
-    private static final float   DEFAULT_DIAMETER_DP     = 85;
-    private static final float   DEFAULT_ALPHA           = 0.2f;
-    private static final int     DEFAULT_COLOR           = Color.BLACK;
-    private static final int     DEFAULT_BACKGROUND      = Color.TRANSPARENT;
-    private static final boolean DEFAULT_HOVER           = true;
-    private static final boolean DEFAULT_DELAY_CLICK     = true;
-    private static final boolean DEFAULT_PERSISTENT      = false;
-    private static final boolean DEFAULT_SEARCH_ADAPTER  = false;
-    private static final boolean DEFAULT_RIPPLE_OVERLAY  = true;
-    private static final int     DEFAULT_ROUNDED_CORNERS = 0;
+    private static final int DEFAULT_DURATION = 350;
+    private static final int DEFAULT_FADE_DURATION = 75;
+    private static final float DEFAULT_DIAMETER_DP = 85;
+    private static final float DEFAULT_ALPHA = 0.2f;
+    private static final int DEFAULT_COLOR = Color.BLACK;
+    private static final int DEFAULT_BACKGROUND = Color.TRANSPARENT;
+    private static final boolean DEFAULT_HOVER = true;
+    private static final boolean DEFAULT_DELAY_CLICK = true;
+    private static final boolean DEFAULT_PERSISTENT = false;
+    private static final boolean DEFAULT_SEARCH_ADAPTER = false;
+    private static final boolean DEFAULT_RIPPLE_OVERLAY = true;
+    private static final int DEFAULT_ROUNDED_CORNERS = 0;
 
-    private static final int  FADE_EXTRA_DELAY = 50;
-    private static final long HOVER_DURATION   = 2500;
+    private static final int FADE_EXTRA_DELAY = 50;
+    private static final long HOVER_DURATION = 2500;
 
-    private final Paint paint  = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Rect bounds = new Rect();
 
-    private int      rippleColor;
-    private boolean  rippleOverlay;
-    private boolean  rippleHover;
-    private int      rippleDiameter;
-    private int      rippleDuration;
-    private int      rippleAlpha;
-    private boolean  rippleDelayClick;
-    private int      rippleFadeDuration;
-    private boolean  ripplePersistent;
+    private int rippleColor;
+    private boolean rippleOverlay;
+    private boolean rippleHover;
+    private int rippleDiameter;
+    private int rippleDuration;
+    private int rippleAlpha;
+    private boolean rippleDelayClick;
+    private int rippleFadeDuration;
+    private boolean ripplePersistent;
     private Drawable rippleBackground;
-    private boolean  rippleInAdapter;
-    private float    rippleRoundedCorners;
+    private boolean rippleInAdapter;
+    private float rippleRoundedCorners;
 
     private float radius;
 
@@ -79,17 +80,17 @@ public class MaterialRippleEffect extends FrameLayout {
     private AnimatorSet rippleAnimator;
     private ObjectAnimator hoverAnimator;
 
-    private Point currentCoords  = new Point();
+    private Point currentCoords = new Point();
     private Point previousCoords = new Point();
 
     private int layerType;
 
     private boolean eventCancelled;
     private boolean prepressed;
-    private int     positionInAdapter;
+    private int positionInAdapter;
 
     private GestureDetector gestureDetector;
-    private PressedEvent      pendingPressEvent;
+    private PressedEvent pendingPressEvent;
 
     public static RippleBuilder on(View view) {
         return new RippleBuilder(view);
@@ -531,7 +532,7 @@ public class MaterialRippleEffect extends FrameLayout {
     }
 
     /*
-    * Accessor
+     * Accessor
      */
     public void setRippleColor(int rippleColor) {
         this.rippleColor = rippleColor;
@@ -681,18 +682,18 @@ public class MaterialRippleEffect extends FrameLayout {
         private final Context context;
         private final View child;
 
-        private int     rippleColor         = DEFAULT_COLOR;
-        private boolean rippleOverlay       = DEFAULT_RIPPLE_OVERLAY;
-        private boolean rippleHover         = DEFAULT_HOVER;
-        private float   rippleDiameter      = DEFAULT_DIAMETER_DP;
-        private int     rippleDuration      = DEFAULT_DURATION;
-        private float   rippleAlpha         = DEFAULT_ALPHA;
-        private boolean rippleDelayClick    = DEFAULT_DELAY_CLICK;
-        private int     rippleFadeDuration  = DEFAULT_FADE_DURATION;
-        private boolean ripplePersistent    = DEFAULT_PERSISTENT;
-        private int     rippleBackground    = DEFAULT_BACKGROUND;
+        private int rippleColor = DEFAULT_COLOR;
+        private boolean rippleOverlay = DEFAULT_RIPPLE_OVERLAY;
+        private boolean rippleHover = DEFAULT_HOVER;
+        private float rippleDiameter = DEFAULT_DIAMETER_DP;
+        private int rippleDuration = DEFAULT_DURATION;
+        private float rippleAlpha = DEFAULT_ALPHA;
+        private boolean rippleDelayClick = DEFAULT_DELAY_CLICK;
+        private int rippleFadeDuration = DEFAULT_FADE_DURATION;
+        private boolean ripplePersistent = DEFAULT_PERSISTENT;
+        private int rippleBackground = DEFAULT_BACKGROUND;
         private boolean rippleSearchAdapter = DEFAULT_SEARCH_ADAPTER;
-        private float   rippleRoundedCorner = DEFAULT_ROUNDED_CORNERS;
+        private float rippleRoundedCorner = DEFAULT_ROUNDED_CORNERS;
 
         public RippleBuilder(View child) {
             this.child = child;

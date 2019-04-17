@@ -8,14 +8,23 @@ import com.algoworks.architectureapp.repositories.LoginRepository;
 import com.algoworks.architectureapp.requests.responses.loginresponse.LoginResponse;
 
 public class LoginViewModel extends ViewModel {
-    LoginRepository loginRepository;
+    private LoginRepository loginRepository;
 
 
     public LoginViewModel() {
-
+        loginRepository = LoginRepository.getInstance();
     }
 
-    public LiveData<LoginResponse> setModelData(Context context,String name,String pass) {
-        return loginRepository.getLoginApi(context,name,pass);
+    public void setModelData(Context context, String name, String pass) {
+
+        loginRepository.getLoginApi(context, name, pass);
     }
+
+    public LiveData<LoginResponse> getLoginData(){
+        return  loginRepository.getLoginData();
+    }
+    public LiveData<Boolean> isLoginRequestTimedOut(){
+        return loginRepository.isLoginRequestTimedOut();
+    }
+
 }
